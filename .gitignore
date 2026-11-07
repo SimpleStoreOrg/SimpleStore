@@ -1,0 +1,36 @@
+# .NET
+**/bin/
+**/obj/
+*.user
+*.suo
+*.nupkg
+
+# IDE
+.idea/
+.vs/
+.vscode/
+*.sln.iml
+*.DotSettings.user
+_ReSharper.Caches/
+
+# Node
+node_modules/
+dist/
+*.log
+
+# OS
+.DS_Store
+
+# Env
+.env
+.env.local
+.vercel
+.env*
+*.bak
+
+# Secrets
+credentials.json
+.tokens/
+
+# Weird Windows-style build folders (accidental)
+**/bin\\*Debug*
