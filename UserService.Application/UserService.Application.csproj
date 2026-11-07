@@ -6,4 +6,23 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\UserService.Domain\UserService.Domain.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Features\Admin\Queries\" />
+      <Folder Include="Features\ShopperAssistant\Queries\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="BCrypt" Version="1.0.0" />
+      <PackageReference Include="BCrypt.Net-Next" Version="4.2.0" />
+      <PackageReference Include="MediatR" Version="14.3.0" />
+      <PackageReference Include="MediatR.Contracts" Version="2.0.1" />
+      <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="10.0.14" />
+      <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.3.13" />
+      <PackageReference Include="Microsoft.EntityFrameworkCore" Version="10.0.14" />
+    </ItemGroup>
+
 </Project>
