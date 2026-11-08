@@ -2,13 +2,13 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SimpleStore-UserService", "SimpleStore-UserService", "{A8C8A1AC-87F6-4F64-8C48-42AD20453CF0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserService.API", "UserService.API\UserService.API.csproj", "{46892DD0-3CF6-46A1-817D-C2502B9690BB}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserService.Application", "UserService.Application\UserService.Application.csproj", "{EEB095EB-4561-46DE-AE4E-71B25E2BEF49}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserService.Domain", "UserService.Domain\UserService.Domain.csproj", "{043D428A-FDF1-458D-A4D7-9BCFA2C75497}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserService.Infrastructure", "UserService.Infrastructure\UserService.Infrastructure.csproj", "{A026B43F-569D-49FC-959A-080C94F3C776}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserService.API", "UserService.API\UserService.API.csproj", "{8AB4D1CF-D81F-44C1-8A46-D23304214915}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -16,16 +16,12 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{46892DD0-3CF6-46A1-817D-C2502B9690BB} = {A8C8A1AC-87F6-4F64-8C48-42AD20453CF0}
 		{EEB095EB-4561-46DE-AE4E-71B25E2BEF49} = {A8C8A1AC-87F6-4F64-8C48-42AD20453CF0}
 		{043D428A-FDF1-458D-A4D7-9BCFA2C75497} = {A8C8A1AC-87F6-4F64-8C48-42AD20453CF0}
 		{A026B43F-569D-49FC-959A-080C94F3C776} = {A8C8A1AC-87F6-4F64-8C48-42AD20453CF0}
+		{8AB4D1CF-D81F-44C1-8A46-D23304214915} = {A8C8A1AC-87F6-4F64-8C48-42AD20453CF0}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{46892DD0-3CF6-46A1-817D-C2502B9690BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{46892DD0-3CF6-46A1-817D-C2502B9690BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{46892DD0-3CF6-46A1-817D-C2502B9690BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{46892DD0-3CF6-46A1-817D-C2502B9690BB}.Release|Any CPU.Build.0 = Release|Any CPU
 		{EEB095EB-4561-46DE-AE4E-71B25E2BEF49}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{EEB095EB-4561-46DE-AE4E-71B25E2BEF49}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EEB095EB-4561-46DE-AE4E-71B25E2BEF49}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -38,5 +34,9 @@ Global
 		{A026B43F-569D-49FC-959A-080C94F3C776}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A026B43F-569D-49FC-959A-080C94F3C776}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A026B43F-569D-49FC-959A-080C94F3C776}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8AB4D1CF-D81F-44C1-8A46-D23304214915}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8AB4D1CF-D81F-44C1-8A46-D23304214915}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8AB4D1CF-D81F-44C1-8A46-D23304214915}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8AB4D1CF-D81F-44C1-8A46-D23304214915}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
