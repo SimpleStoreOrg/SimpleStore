@@ -28,7 +28,8 @@ public class CreateMarketAdminCommandHandler : IRequestHandler<CreateMarketAdmin
         var email = request.Request.Email?.Trim().ToLower();
 
         var adminExists = await _dbContext.Admins.AnyAsync(
-            a => a.Username.Trim().ToLower() == username && a.Email.Trim().ToLower() == email, cancellationToken);
+            a => a.Username.Trim().ToLower() == username &&
+                 a.Email.Trim().ToLower() == email && a.MarketId == request.Request.MarketId, cancellationToken);
 
         if (adminExists)
         {

@@ -9,10 +9,10 @@ public class AdminResponse
     public string? Surname { get; set; }
     public string? Username { get; set; }
     public string? Email { get; set; }
-    public long MarketId { get; set; }
+    public long? MarketId { get; set; }
     public string? PhoneNumber { get; set; }
     public RoleStatus Role { get; set; }
     public DateTime CreatedAt { get; set; }
-    public DateTime UpdatedAt { get; set; }
-    public DateTime DeletedAt { get; set; }
+    public DateTime? UpdatedAt { get; set; }
+    public DateTime? DeletedAt { get; set; }
 }
