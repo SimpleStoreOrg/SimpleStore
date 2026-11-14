@@ -1,0 +1,13 @@
+namespace OrderService.Domain.Entities;
+
+public class OrderItemsEntity
+{
+    public long Id { get; set; }
+    public long OrderId { get; set; }
+    public OrderEntity Order { get; set; }
+    public long MarketId { get; set; }
+    public long ProductId { get; set; }
+    public int Quantity { get; set; }
+    public decimal Price { get; set; }
+    public decimal TotalItemPrice { get; set; }
+}
