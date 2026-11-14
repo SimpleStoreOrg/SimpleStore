@@ -21,9 +21,9 @@ public class CartController : ControllerBase
     
     [Authorize(Roles = "Customer")]
     [HttpGet("get-my-cart")]
-    public async Task<IActionResult> GetMyCartAsync(long customerId)
+    public async Task<IActionResult> GetMyCartAsync()
     {
-        var result = await _mediator.Send(new GetMyCartQuery(customerId));
+        var result = await _mediator.Send(new GetMyCartQuery());
         return Ok(result);
     }
 
