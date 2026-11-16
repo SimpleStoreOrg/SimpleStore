@@ -29,9 +29,9 @@ public class CartController : ControllerBase
 
     [Authorize(Roles = "Customer")]
     [HttpPost]
-    public async Task<IActionResult> CreateCartAsync()
+    public async Task<IActionResult> CreateCartAsync(CreateCartRequest request)
     {
-        var result = await _mediator.Send(new CreateCartCommand());
+        var result = await _mediator.Send(new CreateCartCommand(request));
         return Ok(result);
     }
     
