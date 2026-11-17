@@ -42,4 +42,12 @@ public class CartController : ControllerBase
         var result = await _mediator.Send(new AddItemToCartCommand(request));
         return Ok(result);
     }
+    
+    [Authorize(Roles = "Customer")]
+    [HttpPost("Remove-Cart-Item")]
+    public async Task<IActionResult> RemoveCartItemAsync(long[] cartItemIds)
+    {
+        var result = await _mediator.Send(new RemoveCartItemCommand(cartItemIds));
+        return Ok(result);
+    }
 }
