@@ -50,41 +50,58 @@ public class AddItemsToCartCommandHandler : IRequestHandler<AddItemToCartCommand
             throw new CartNotFoundException();
         }
 
+        var marketId = cart.CartItems.Select(ci => ci.MarketId).FirstOrDefault();
+
         var token = _accessor.HttpContext?.Request.Headers["Authorization"].ToString();
+        if (token == null)
+        {
+            throw new Exception();
+        }
 
         foreach (var item in request.Request.CreateCartItemRequest)
         {
-            var product = await _productApi.GetProductById(item.ProductId, token);
+            ProductResponse product;
+            try
+            {
+                product = await _productApi.GetProductById(item.ProductId, token);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+
+            if (marketId != product.MarketId)
+            {
+                throw new InvalidMarketException("All products must be from the same market");
+            }
 
             var existingItem = cart.CartItems.FirstOrDefault(ci => ci.ProductId == item.ProductId);
 
-            int newTotalQuantity;
-            if (existingItem != null)
-            {
-                newTotalQuantity = existingItem.Quantity + item.Quantity;
-            }
-            else
-            {
-                newTotalQuantity = item.Quantity;
-            }
-
-            if (newTotalQuantity > product.Stock)
-            {
-                throw new InsufficientStockException(product.Id);
-            }
-            
             if (existingItem != null)
             {
                 existingItem.Quantity += item.Quantity;
+                
+                if (existingItem.Quantity > product.Stock)
+                {
+                    throw new InsufficientStockException(product.Id);
+                }
+
                 existingItem.Price = product.Price;
                 existingItem.TotalItemPrice = existingItem.Quantity * product.Price;
             }
             else
             {
+                if (item.Quantity > product.Stock)
+                {
+                    throw new InsufficientStockException(product.Id);
+                }
+
                 var cartItem = new CartItemsEntity
                 {
                     CartId = cart.Id,
                     ProductId = item.ProductId,
+                    MarketId = product.MarketId,
                     Quantity = item.Quantity,
                     Price = product.Price,
                     TotalItemPrice = product.Price * item.Quantity,
