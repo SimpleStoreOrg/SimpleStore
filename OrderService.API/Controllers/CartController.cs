@@ -36,15 +36,15 @@ public class CartController : ControllerBase
     }
     
     [Authorize(Roles = "Customer")]
-    [HttpPost("Add-Item-To-Cart")]
-    public async Task<IActionResult> AddItemToCartAsync(AddItemToCartRequest request)
+    [HttpPut("add-or-update-cart-item")]
+    public async Task<IActionResult> AddItemToCartAsync(AddOrUpdateCartItemRequest request)
     {
-        var result = await _mediator.Send(new AddItemToCartCommand(request));
+        var result = await _mediator.Send(new AddOrUpdateCartItemCommand(request));
         return Ok(result);
     }
     
     [Authorize(Roles = "Customer")]
-    [HttpPost("Remove-Cart-Item")]
+    [HttpDelete("remove-cart-item")]
     public async Task<IActionResult> RemoveCartItemAsync(long[] cartItemIds)
     {
         var result = await _mediator.Send(new RemoveCartItemCommand(cartItemIds));

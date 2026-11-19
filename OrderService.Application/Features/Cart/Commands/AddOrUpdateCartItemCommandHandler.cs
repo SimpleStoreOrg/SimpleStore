@@ -12,18 +12,18 @@ using OrderService.Domain.Entities;
 
 namespace OrderService.Application.Features.Cart.Commands;
 
-public record AddItemToCartCommand(AddItemToCartRequest Request) : IRequest<CartResponse>;
+public record AddOrUpdateCartItemCommand(AddOrUpdateCartItemRequest Request) : IRequest<CartResponse>;
 
-public class AddItemsToCartCommandHandler : IRequestHandler<AddItemToCartCommand, CartResponse>
+public class AddOrUpdateCartItemCommandHandler : IRequestHandler<AddOrUpdateCartItemCommand, CartResponse>
 {
     private readonly IOrderServiceDbContext _dbContext;
-    private readonly ILogger<AddItemsToCartCommandHandler> _logger;
+    private readonly ILogger<AddOrUpdateCartItemCommandHandler> _logger;
     private readonly IProductApi _productApi;
     private readonly IHttpContextAccessor _accessor;
 
-    public AddItemsToCartCommandHandler(
+    public AddOrUpdateCartItemCommandHandler(
         IOrderServiceDbContext dbContext,
-        ILogger<AddItemsToCartCommandHandler> logger,
+        ILogger<AddOrUpdateCartItemCommandHandler> logger,
         IProductApi productApi, 
         IHttpContextAccessor accessor)
     {
@@ -32,7 +32,7 @@ public class AddItemsToCartCommandHandler : IRequestHandler<AddItemToCartCommand
         _productApi = productApi;
         _accessor = accessor;
     }
-    public async Task<CartResponse> Handle(AddItemToCartCommand request, CancellationToken cancellationToken)
+    public async Task<CartResponse> Handle(AddOrUpdateCartItemCommand request, CancellationToken cancellationToken)
     {
         var customerIdStr = _accessor.HttpContext?.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
         if (customerIdStr == null)
@@ -58,7 +58,7 @@ public class AddItemsToCartCommandHandler : IRequestHandler<AddItemToCartCommand
             throw new Exception();
         }
 
-        foreach (var item in request.Request.CreateCartItemRequest)
+        foreach (var item in request.Request.UpdateOrAddCartItemRequest)
         {
             ProductResponse product;
             try
@@ -80,7 +80,12 @@ public class AddItemsToCartCommandHandler : IRequestHandler<AddItemToCartCommand
 
             if (existingItem != null)
             {
-                existingItem.Quantity += item.Quantity;
+                if (item.Quantity <= 0)
+                {
+                    throw new InvalidQuantityException();
+                }
+                
+                existingItem.Quantity = item.Quantity;
                 
                 if (existingItem.Quantity > product.Stock)
                 {
