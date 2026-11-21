@@ -37,7 +37,7 @@ public class CartController : ControllerBase
     
     [Authorize(Roles = "Customer")]
     [HttpPut("add-or-update-cart-item")]
-    public async Task<IActionResult> AddItemToCartAsync(AddOrUpdateCartItemRequest request)
+    public async Task<IActionResult> AddOrUpdateCartItemAsync(AddOrUpdateCartItemRequest request)
     {
         var result = await _mediator.Send(new AddOrUpdateCartItemCommand(request));
         return Ok(result);
