@@ -8,7 +8,7 @@ public interface IProductApi
     [Get("/api/Product/{id}")]
     public Task<ProductResponse> GetProductById(long id, [Header("Authentication")] string token);
     
-    [Post("/api/Product/Get-By-Ids")]
+    [Post("/api/Product/get-by-ids")]
     public Task<List<ProductResponse>> GetProductByIds(GetProductsByIdsRequest request, [Header("Authentication")] string token);
 
     class GetProductsByIdsRequest
