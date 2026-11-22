@@ -37,6 +37,7 @@ namespace ProductService.Infrastructure.Migrations
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<long?>("ParentCategoryId")
@@ -63,7 +64,7 @@ namespace ProductService.Infrastructure.Migrations
                     b.Property<long?>("CategoryEntityId")
                         .HasColumnType("bigint");
 
-                    b.Property<long?>("CategoryId")
+                    b.Property<long>("CategoryId")
                         .HasColumnType("bigint");
 
                     b.Property<DateTime>("CreatedAt")
@@ -75,17 +76,18 @@ namespace ProductService.Infrastructure.Migrations
                     b.Property<DateOnly?>("ExpiresAt")
                         .HasColumnType("date");
 
-                    b.Property<long?>("MarketId")
+                    b.Property<long>("MarketId")
                         .HasColumnType("bigint");
 
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<decimal>("Price")
                         .HasColumnType("numeric");
 
-                    b.Property<decimal>("Stock")
-                        .HasColumnType("numeric");
+                    b.Property<int>("Stock")
+                        .HasColumnType("integer");
 
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("timestamp with time zone");

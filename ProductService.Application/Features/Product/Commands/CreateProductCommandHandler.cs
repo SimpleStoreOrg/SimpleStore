@@ -37,6 +37,7 @@ public class CreateProductCommandHandler : IRequestHandler<CreateProductCommand,
         {
             Name = request.Request.Name,
             CategoryId = request.Request.CategoryId,
+            MarketId = request.Request.MarketId,
             Price = request.Request.Price,
             Stock = request.Request.Stock,
             CreatedAt = DateTime.UtcNow

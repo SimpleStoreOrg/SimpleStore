@@ -34,7 +34,8 @@ public class UpdateProductCommandHandler : IRequestHandler<UpdateProductCommand,
         product.Price = request.Request.Price;
         product.Stock = request.Request.Stock;
         product.UpdatedAt = DateTime.UtcNow;
-        ;
+
+        await _dbContext.SaveChangesAsync(cancellationToken);
         
         return new ProductResponse
         {

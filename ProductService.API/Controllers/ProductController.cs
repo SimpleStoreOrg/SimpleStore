@@ -30,6 +30,13 @@ public class ProductController : ControllerBase
         var result = await _mediator.Send(new GetProductByIdQuery(id));
         return Ok(result);
     }
+    
+    [HttpPost("get-by-ids")]
+    public async Task<IActionResult> GetProductByIdsAsync([FromBody]GetProductsByIdsRequest request)
+    {
+        var result = await _mediator.Send(new GetProductByIdsQuery(request));
+        return Ok(result);
+    }
 
     [HttpPost]
     public async Task<IActionResult> CreateProductAsync(CreateProductRequest request)
