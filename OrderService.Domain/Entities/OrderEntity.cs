@@ -5,6 +5,7 @@ namespace OrderService.Domain.Entities;
 public class OrderEntity : BaseEntity
 {
     public long CustomerId { get; set; }
+    public long MarketId { get; set; }
     public long? ShopperAssistantId { get; set; }
     public OrderStatus Status { get; set; }
     public List<OrderItemsEntity> OrderItems { get; set; }

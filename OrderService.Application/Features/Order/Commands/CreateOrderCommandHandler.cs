@@ -88,6 +88,7 @@ public class CreateOrderCommandHandler : IRequestHandler<CreateOrderCommand, Ord
         var order = new OrderEntity
         {
             CustomerId = customerId,
+            MarketId = cart.MarketId,
             Status = OrderStatus.New,
             CreatedAt = DateTime.UtcNow
         };
@@ -116,12 +117,21 @@ public class CreateOrderCommandHandler : IRequestHandler<CreateOrderCommand, Ord
         await _dbContext.Orders.AddAsync(order, cancellationToken);
         await _dbContext.SaveChangesAsync(cancellationToken);
 
+        foreach (var item in order.OrderItems)
+        {
+            await _productApi.UpdateStock(item.ProductId, new IProductApi.UpdateStockRequest()
+            {
+                Quantity = item.Quantity
+            }, token);
+        }
+
         return new OrderResponse
         {
             Id = order.Id,
             CustomerId = customerId,
+            MarketId = order.MarketId,
             Status = order.Status,
-            OrderItems = order.OrderItems.Select(oi => new OrderItemsResponse()
+            OrderItems = order.OrderItems.Select(oi => new OrderItemsResponse
             {
                 Id = oi.Id,
                 OrderId = oi.OrderId,
@@ -131,7 +141,8 @@ public class CreateOrderCommandHandler : IRequestHandler<CreateOrderCommand, Ord
                 Quantity = oi.Quantity,
                 TotalItemPrice = oi.TotalItemPrice
             }).ToList(),
-            TotalPrice = order.TotalPrice
+            TotalPrice = order.TotalPrice,
+            CreatedAt = order.CreatedAt,
         };
     }
 }
