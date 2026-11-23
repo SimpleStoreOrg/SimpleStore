@@ -19,7 +19,7 @@ public class OrderController : ControllerBase
         _mediator = mediator;
     }
 
-    [Authorize(Roles = "Customer")]
+    [Authorize(Roles = "Admin, MarketAdmin, Customer, ShopperAssistant")]
     [HttpGet]
     public async Task<IActionResult> GetOrdersAsync(
         [FromQuery] int? pageNumber,
@@ -35,6 +35,14 @@ public class OrderController : ControllerBase
             createdAtFrom,
             createdAtTo));
         
+        return Ok(result);
+    }
+
+    [Authorize(Roles = "Admin, MarketAdmin, Customer, ShopperAssistant")]
+    [HttpGet("{id}")]
+    public async Task<IActionResult> GetOrderDetailsAsync(long id)
+    {
+        var result = await _mediator.Send(new GetOrderDetailsQuery(id));
         return Ok(result);
     }
 

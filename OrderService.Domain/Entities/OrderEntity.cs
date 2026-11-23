@@ -10,5 +10,5 @@ public class OrderEntity : BaseEntity
     public OrderStatus Status { get; set; }
     public List<OrderItemsEntity> OrderItems { get; set; }
     public decimal TotalPrice { get; set; }
-    public DateTime CompletedAt { get; set; }
+    public DateTime? CompletedAt { get; set; }
 }
