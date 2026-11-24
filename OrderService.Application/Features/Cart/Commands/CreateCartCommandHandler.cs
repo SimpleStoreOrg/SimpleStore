@@ -73,6 +73,7 @@ public class CreateCartCommandHandler : IRequestHandler<CreateCartCommand, CartR
         var cart = new CartEntity
         {
             CustomerId = customerId,
+            MarketId = request.Request.MarketId,
             CreatedAt = DateTime.UtcNow
         };
 

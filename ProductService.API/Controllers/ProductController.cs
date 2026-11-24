@@ -58,4 +58,11 @@ public class ProductController : ControllerBase
         var result = await _mediator.Send(new DeleteProductCommand(id));
         return Ok(result);
     }
+
+    [HttpPut("{id}/update-stock")]
+    public async Task<IActionResult> UpdateStockAsync(long id, UpdateStockRequest request)
+    {
+        var result = await _mediator.Send(new UpdateStockCommand(id, request));
+        return Ok(result);
+    }
 }

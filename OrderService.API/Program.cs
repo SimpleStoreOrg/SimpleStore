@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi;
 using OrderService.Application;
+using OrderService.Application.Features.Order.Commands;
 using OrderService.Application.Interfaces;
 using OrderService.Application.Interfaces.External;
 using OrderService.Infrastructure;
@@ -30,6 +31,8 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             RoleClaimType = ClaimTypes.Role
         };
     });
+
+builder.Services.Configure<TotalOrderCount>(builder.Configuration.GetSection("TotalOrders"));
 
 builder.Services.AddDbContext<OrderServiceDbContext>(options =>
 {

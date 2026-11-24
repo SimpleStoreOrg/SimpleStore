@@ -39,6 +39,9 @@ namespace OrderService.Infrastructure.Migrations
                     b.Property<DateTime?>("DeletedAt")
                         .HasColumnType("timestamp with time zone");
 
+                    b.Property<long>("MarketId")
+                        .HasColumnType("bigint");
+
                     b.Property<decimal>("TotalPrice")
                         .HasColumnType("numeric");
 
@@ -94,7 +97,7 @@ namespace OrderService.Infrastructure.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
 
-                    b.Property<DateTime>("CompletedAt")
+                    b.Property<DateTime?>("CompletedAt")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<DateTime>("CreatedAt")
@@ -105,6 +108,9 @@ namespace OrderService.Infrastructure.Migrations
 
                     b.Property<DateTime?>("DeletedAt")
                         .HasColumnType("timestamp with time zone");
+
+                    b.Property<long>("MarketId")
+                        .HasColumnType("bigint");
 
                     b.Property<long?>("ShopperAssistantId")
                         .HasColumnType("bigint");
