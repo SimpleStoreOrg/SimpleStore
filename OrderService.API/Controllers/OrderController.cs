@@ -53,4 +53,12 @@ public class OrderController : ControllerBase
         var result = await _mediator.Send(new CreateOrderCommand());
         return Ok(result);
     }
+    
+    [Authorize(Roles = "ShopperAssistant")]
+    [HttpPost("assign-assistant")]
+    public async Task<IActionResult> AssignToShopperAssistantAsync(long id)
+    {
+        var result = await _mediator.Send(new AssignToShopperAssistantCommand(id));
+        return Ok(result);
+    }
 }
